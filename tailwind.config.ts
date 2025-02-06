@@ -13,9 +13,9 @@ export default {
   },
   theme: {
     extend: {
-      colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+      fontFamily: {
+        sans: ['var(--font-bowlby-one-sc)'],
+        mono: ['var(--font-dm-mono)'],
       },
     },
   },
