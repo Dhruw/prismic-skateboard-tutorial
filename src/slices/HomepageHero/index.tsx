@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Content } from '@prismicio/client';
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
+import { Bounded } from '@/components/Bounded';
 
 /**
  * Props for `HomepageHero`.
@@ -13,7 +14,7 @@ export type HomepageHeroProps = SliceComponentProps<Content.HomepageHeroSlice>;
  */
 const HomepageHero: FC<HomepageHeroProps> = ({ slice }) => {
   return (
-    <section
+    <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
@@ -22,7 +23,7 @@ const HomepageHero: FC<HomepageHeroProps> = ({ slice }) => {
       </div>
       <PrismicRichText field={slice.primary.body} />
       <PrismicNextLink field={slice.primary.button} />
-    </section>
+    </Bounded>
   );
 };
 
