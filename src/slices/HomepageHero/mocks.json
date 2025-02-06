@@ -2,7 +2,43 @@
 	{
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
-		"primary": {},
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "ESCAPE THE CUL-DE-SAC",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"button": {
+				"__TYPE__": "LinkContent",
+				"key": "c3cab6c3-5a1d-471d-8aca-8f590d89cb75",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "Build your board"
+				}
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Not just a board, your board",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			}
+		},
 		"items": []
 	}
 ]

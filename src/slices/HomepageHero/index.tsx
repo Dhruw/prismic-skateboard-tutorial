@@ -1,6 +1,7 @@
-import { FC } from "react";
-import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { FC } from 'react';
+import { Content } from '@prismicio/client';
+import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
+import { PrismicNextLink } from '@prismicio/next';
 
 /**
  * Props for `HomepageHero`.
@@ -16,8 +17,11 @@ const HomepageHero: FC<HomepageHeroProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      Placeholder component for homepage_hero (variation: {slice.variation})
-      Slices
+      <div className='text-red-500 text-5xl'>
+      <PrismicRichText field={slice.primary.heading} />
+      </div>
+      <PrismicRichText field={slice.primary.body} />
+      <PrismicNextLink field={slice.primary.button} />
     </section>
   );
 };
