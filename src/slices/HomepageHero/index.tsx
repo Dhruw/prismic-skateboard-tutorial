@@ -1,8 +1,13 @@
 import { FC } from 'react';
 import { Content } from '@prismicio/client';
-import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
+import {
+  PrismicRichText,
+  PrismicText,
+  SliceComponentProps,
+} from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
 import { Bounded } from '@/components/Bounded';
+import { Heading } from '@/components/Heading';
 
 /**
  * Props for `HomepageHero`.
@@ -17,12 +22,20 @@ const HomepageHero: FC<HomepageHeroProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="bg-brand-pink relative h-dvh overflow-hidden text-zinc-800 bg-texture"
     >
-      <div className='text-red-500 text-5xl'>
-      <PrismicRichText field={slice.primary.heading} />
+      <div className="grid absolute inset-0 mx-auto mt-24 max-w-6xl grid-rows-[1fr,auto] place-items-end px-6 ~py-10/16">
+        <Heading className="relative max-w-2xl place-self-start">
+          <PrismicText field={slice.primary.heading} />
+        </Heading>
+        <div className="flex relative w-full flex-col items-center justify-between ~gap-2/4 lg:flex-row">
+          <div className="max-w-[45ch] font-semibold ~text-lg/xl">
+            <PrismicRichText field={slice.primary.body} />
+          </div>
+          <PrismicNextLink field={slice.primary.button} />
+        </div>
       </div>
-      <PrismicRichText field={slice.primary.body} />
-      <PrismicNextLink field={slice.primary.button} />
+      {/* </div> */}
     </Bounded>
   );
 };
