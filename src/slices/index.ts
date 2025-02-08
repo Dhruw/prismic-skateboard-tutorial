@@ -4,4 +4,5 @@ import dynamic from "next/dynamic";
 
 export const components = {
   homepage_hero: dynamic(() => import("./HomepageHero")),
+  product_grid: dynamic(() => import("./ProductGrid")),
 };
