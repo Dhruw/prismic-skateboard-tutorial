@@ -5,7 +5,6 @@ import {
   PrismicText,
   SliceComponentProps,
 } from '@prismicio/react';
-import { PrismicNextLink, PrismicNextImage } from '@prismicio/next';
 import { Bounded } from '@/components/Bounded';
 import { Heading } from '@/components/Heading';
 import clsx from 'clsx';
@@ -17,10 +16,15 @@ import ParallaxImage from './ParallaxImage';
  */
 export type TextAndImageProps = SliceComponentProps<Content.TextAndImageSlice>;
 
+declare module 'react' {
+  interface CSSProperties {
+    '--index'?: number;
+  }
+}
 /**
  * Component for "TextAndImage" Slices.
  */
-const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
+const TextAndImage: FC<TextAndImageProps> = ({ slice, index }) => {
   let bgcolor = '';
   let buttonColor = 'lime';
   let textColor = 'text-white';
@@ -48,7 +52,13 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={clsx('bg-texture', textColor, bgcolor)}
+      className={clsx(
+        'sticky top-[calc(var(--index)*2rem)]',
+        'bg-texture',
+        textColor,
+        bgcolor
+      )}
+      style={{ '--index': index }}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 items-center md:gap-24">
         <div
@@ -74,18 +84,6 @@ const TextAndImage: FC<TextAndImageProps> = ({ slice }) => {
           backgroundImage={slice.primary.background_image}
           className=""
         />
-        {/* <div>
-          <div
-            style={{ background: `url(${slice.primary.background_image.url})` }}
-            className=""
-          >
-            <PrismicNextImage
-              field={slice.primary.forground_image}
-              alt=""
-              className="max-h-60"
-            />
-          </div>
-        </div> */}
       </div>
     </Bounded>
   );
