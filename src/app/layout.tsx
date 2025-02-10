@@ -3,6 +3,7 @@ import './globals.css';
 import { bowlby, dmMono } from './fonts';
 import Header from '@/components/Header';
 import { SVGFilters } from '@/components/SVGFilters';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,6 +23,7 @@ export default function RootLayout({
         <main>
           <Header />
           {children}
+          <Footer />
         </main>
         <SVGFilters />
       </body>
