@@ -3,6 +3,8 @@ import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import React from 'react';
 import { Logo } from '@/components/Logo';
 import { Bounded } from './Bounded';
+import { FooterPhysics } from './FooterPhysics';
+import { asImageSrc } from '@prismicio/client';
 
 type Props = {};
 
@@ -11,6 +13,9 @@ async function Footer({}: Props) {
 
   const settings = await client.getSingle('settings');
 
+  const boardTextureUrls = settings.data.footer_skateboards
+    .map((item) => asImageSrc(item.skateboard, { h: 600 }))
+    .filter((url): url is string => Boolean(url));
   return (
     <footer className="bg-texture bg-zinc-900 text-white overflow-hidden">
       <div className="relative h-[75vh] ~p-10/16 md:aspect-auto">
@@ -23,6 +28,10 @@ async function Footer({}: Props) {
         />
         <Logo className="pointer-events-none h-20 relative mix-blend-exclusion md:h-28" />
         {/* Physics Boards */}
+        <FooterPhysics
+          boardTextureURLs={boardTextureUrls}
+          className="absolute inset-0 overflow-hidden"
+        />
       </div>
       <Bounded as="nav" className="">
         <ul className="flex flex-wrap justify-center gap-8 ~text-lg/xl">
