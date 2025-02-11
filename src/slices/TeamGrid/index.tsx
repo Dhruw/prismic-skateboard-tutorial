@@ -5,6 +5,7 @@ import { Content } from '@prismicio/client';
 import { PrismicText, SliceComponentProps } from '@prismicio/react';
 import { FC } from 'react';
 import Skater from './Skater';
+import SlideIn from '@/components/SlideIn';
 
 /**
  * Props for `TeamGrid`.
@@ -18,7 +19,6 @@ const TeamGrid: FC<TeamGridProps> = async ({ slice }) => {
   const client = createClient();
 
   const skaters: Content.SkaterDocument[] = await client.getAllByType('skater');
-  console.log('skaters', skaters);
 
   return (
     <Bounded
@@ -26,9 +26,11 @@ const TeamGrid: FC<TeamGridProps> = async ({ slice }) => {
       data-slice-variation={slice.variation}
       className="bg-texture bg-brand-navy"
     >
-      <Heading className="mb-8 text-center text-white" as="h2">
-        <PrismicText field={slice.primary.heading} />
-      </Heading>
+      <SlideIn>
+        <Heading className="mb-8 text-center text-white" as="h2">
+          <PrismicText field={slice.primary.heading} />
+        </Heading>
+      </SlideIn>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
         {skaters.map((skater, index) => (
           <Skater skater={skater} key={skater.data.first_name} index={index} />

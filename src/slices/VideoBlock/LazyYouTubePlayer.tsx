@@ -30,7 +30,7 @@ export function LazyYouTubePlayer({ youTubeID }: VideoProps) {
 
     return () => {
       if (currentContainerRef) {
-        observer.unobserve(currentContainerRef);
+        observer.disconnect()
       }
     };
   });
