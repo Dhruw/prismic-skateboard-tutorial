@@ -1,4 +1,5 @@
 'use client';
+import { Environment, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import React, { Suspense } from 'react';
 
@@ -22,8 +23,13 @@ function InteractiveSkateboard({}: Props) {
 function Scene() {
   return (
     <group>
+      {/* <pointLight position={[1, 1, 1]} intensity={5} /> */}
+      {/* We can have many pointlights */}
+      <OrbitControls />
+      {/* <Environment preset='forest' background /> */}
+      <Environment files={'/hdr/warehouse-256.hdr'} />
       <mesh>
-        <meshBasicMaterial />
+        <meshStandardMaterial />
         <boxGeometry />
       </mesh>
     </group>
