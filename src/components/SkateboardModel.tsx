@@ -56,6 +56,18 @@ export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
     return material;
   }, [gripTapeDiffuse, gripTapeRoughness]);
 
+  const boltColor = '#555555';
+
+  const boltMaterial = useMemo(() => {
+    const material = new THREE.MeshStandardMaterial({
+      roughness: 0.3,
+      metalness: 0.5,
+      color: '#555555',
+    });
+
+    return material;
+  }, [boltColor]);
+
   return (
     <group {...props} dispose={null}>
       <group name="Scene">
@@ -105,7 +117,7 @@ export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
           castShadow
           receiveShadow
           geometry={nodes.Bolts.geometry}
-          material={nodes.Bolts.material}
+          material={boltMaterial}
           position={[0, 0.198, 0]}
           rotation={[Math.PI, 0, Math.PI]}
         />
