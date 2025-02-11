@@ -68,6 +68,25 @@ export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
     return material;
   }, [boltColor]);
 
+  const metalNormal = useTexture('/skateboard/metal-normal.avif');
+  metalNormal.wrapS = THREE.RepeatWrapping;
+  metalNormal.wrapT = THREE.RepeatWrapping;
+  metalNormal.anisotropy = 8;
+  metalNormal.repeat.set(8, 8);
+  const truckColor = '#555555';
+
+  const truckMaterial = useMemo(() => {
+    const material = new THREE.MeshStandardMaterial({
+      roughness: 0.2,
+      normalMap: metalNormal,
+      normalScale: new THREE.Vector2(0.3, 0.3),
+      metalness: 0.8,
+      color: '#555555',
+    });
+
+    return material;
+  }, [truckColor]);
+
   return (
     <group {...props} dispose={null}>
       <group name="Scene">
@@ -143,7 +162,7 @@ export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
           castShadow
           receiveShadow
           geometry={nodes.Truck1.geometry}
-          material={nodes.Truck1.material}
+          material={truckMaterial}
           position={[0, 0.101, -0.617]}
         />
         <mesh
@@ -151,7 +170,7 @@ export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
           castShadow
           receiveShadow
           geometry={nodes.Truck2.geometry}
-          material={nodes.Truck2.material}
+          material={truckMaterial}
           position={[0, 0.101, 0.617]}
           rotation={[Math.PI, 0, Math.PI]}
         />
