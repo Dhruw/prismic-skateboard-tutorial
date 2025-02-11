@@ -381,6 +381,46 @@ export interface HomepageHeroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Skateboard Deck Texture field in *HomepageHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage_hero.default.primary.skateboard_deck_texture
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  skateboard_deck_texture: prismic.ImageField<never>;
+
+  /**
+   * Skateboard Wheel field in *HomepageHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage_hero.default.primary.skateboard_wheel
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  skateboard_wheel: prismic.ImageField<never>;
+
+  /**
+   * Skateboard Truck Color field in *HomepageHero → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage_hero.default.primary.skateboard_truck_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  skateboard_truck_color: prismic.ColorField;
+
+  /**
+   * Skateboard Bolt Color field in *HomepageHero → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage_hero.default.primary.skateboard_bolt_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  skateboard_bolt_color: prismic.ColorField;
 }
 
 /**

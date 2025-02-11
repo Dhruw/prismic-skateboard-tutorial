@@ -17,8 +17,8 @@
 				]
 			},
 			"button": {
-				"__TYPE__": "LinkContent",
 				"key": "c3cab6c3-5a1d-471d-8aca-8f590d89cb75",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "https://slicemachine.dev",
@@ -37,6 +37,62 @@
 						"direction": "ltr"
 					}
 				]
+			},
+			"skateboard_deck_texture": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2",
+					"width": 3648,
+					"height": 4560
+				},
+				"url": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2",
+				"width": 3648,
+				"height": 4560,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"skateboard_wheel": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1593642532973-d31b6557fa68",
+					"width": 8640,
+					"height": 8640
+				},
+				"url": "https://images.unsplash.com/photo-1593642532973-d31b6557fa68",
+				"width": 8640,
+				"height": 8640,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"skateboard_truck_color": {
+				"__TYPE__": "FieldContent",
+				"value": "#4a0542",
+				"type": "Color"
+			},
+			"skateboard_bolt_color": {
+				"__TYPE__": "FieldContent",
+				"value": "#5f1350",
+				"type": "Color"
 			}
 		},
 		"items": []
