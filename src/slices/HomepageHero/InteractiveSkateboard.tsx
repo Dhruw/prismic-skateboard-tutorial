@@ -1,6 +1,6 @@
 'use client';
 import { SkateboardModel } from '@/components/SkateboardModel';
-import { Environment, OrbitControls } from '@react-three/drei';
+import { ContactShadows, Environment, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import React, { Suspense } from 'react';
 
@@ -34,6 +34,7 @@ function Scene() {
         <boxGeometry />
       </mesh> */}
       <SkateboardModel />
+      <ContactShadows opacity={0.6} position={[0, -0.08, 0]} />
     </group>
   );
 }
