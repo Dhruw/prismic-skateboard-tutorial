@@ -1,4 +1,5 @@
 'use client';
+import { SkateboardModel } from '@/components/SkateboardModel';
 import { Environment, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import React, { Suspense } from 'react';
@@ -28,10 +29,11 @@ function Scene() {
       <OrbitControls />
       {/* <Environment preset='forest' background /> */}
       <Environment files={'/hdr/warehouse-256.hdr'} />
-      <mesh>
+      {/* <mesh>
         <meshStandardMaterial />
         <boxGeometry />
-      </mesh>
+      </mesh> */}
+      <SkateboardModel />
     </group>
   );
 }
