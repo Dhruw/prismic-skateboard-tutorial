@@ -55,7 +55,8 @@ function Scene({
 
     const { name } = event.object;
 
-    ollie(board);
+    if (name === 'back') ollie(board);
+    if (name === 'front') kickflip(board);
   }
 
   function ollie(board: THREE.Group) {
@@ -76,6 +77,37 @@ function Scene({
       .to(board.rotation, {
         x: 0,
         duration: 0.26,
+        ease: 'none',
+      });
+  }
+
+  function kickflip(board: THREE.Group) {
+    jumpBoard(board);
+
+    gsap
+      .timeline()
+      .to(board.rotation, {
+        x: -0.6,
+        duration: 0.26,
+        ease: 'none',
+      })
+      .to(board.rotation, {
+        x: 0.4,
+        duration: 0.82,
+        ease: 'power2.in',
+      })
+      .to(
+        board.rotation,
+        {
+          z: `+=${Math.PI * 2}`,
+          duration: 0.78,
+          ease: 'none',
+        },
+        0.3
+      )
+      .to(board.rotation, {
+        x: 0,
+        duration: 0.12,
         ease: 'none',
       });
   }
@@ -107,7 +139,7 @@ function Scene({
         <boxGeometry />
       </mesh> */}
       <group ref={containerRef} position={[-0.25, 0, -0.635]}>
-        <group position={[0, -0.86, 0.635]}>
+        <group position={[0, -0.086, 0.635]}>
           <SkateboardModel
             deckTextureURL={deckTextureURL}
             deckTextureURLs={[deckTextureURL]}
@@ -117,9 +149,17 @@ function Scene({
             boltColor={boltColor}
             constantWheelSpin
           />
+          <mesh position={[0, 0.27, 0.9]} name="front" onClick={onClick}>
+            <boxGeometry args={[0.6, 0.1, 0.58]} />
+            <meshStandardMaterial visible={true} color="#00f" />
+          </mesh>
           <mesh position={[0, 0.27, 0]} name="middle" onClick={onClick}>
             <boxGeometry args={[0.6, 0.1, 1.2]} />
             <meshStandardMaterial visible={true} />
+          </mesh>
+          <mesh position={[0, 0.27, -0.9]} name="back" onClick={onClick}>
+            <boxGeometry args={[0.6, 0.2, 0.58]} />
+            <meshStandardMaterial visible={true} color="#f00" />
           </mesh>
         </group>
       </group>
