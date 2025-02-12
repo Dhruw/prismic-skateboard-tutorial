@@ -2,10 +2,12 @@
 import * as THREE from 'three';
 import { SkateboardModel } from '@/components/SkateboardModel';
 import { ContactShadows, Environment, OrbitControls } from '@react-three/drei';
-import { Canvas, ThreeEvent } from '@react-three/fiber';
-import React, { Suspense, useRef, useState } from 'react';
+import { Canvas, ThreeEvent, useThree } from '@react-three/fiber';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import Hotspot from './Hotspot';
+
+const INITIAL_CAMERA_POSITION = [1.5, 1, 1.4] as const;
 
 type Props = {
   deckTextureURL: string;
@@ -24,7 +26,7 @@ function InteractiveSkateboard({
     <div className="absolute inset-0 flex items-center justify-center">
       <Canvas
         className="min-h-[60rem] w-full"
-        camera={{ position: [1.5, 1, 1.4], fov: 55 }}
+        camera={{ position: INITIAL_CAMERA_POSITION, fov: 55 }}
       >
         {/* {slice.} */}
         <Suspense fallback="">
@@ -55,6 +57,25 @@ function Scene({
     middle: true,
     back: true,
   });
+
+  const { camera } = useThree();
+
+  useEffect(() => {
+    camera.lookAt(new THREE.Vector3(-0.2, 0.15, 0));
+
+    setZoom();
+
+    window.addEventListener('resize', setZoom);
+    function setZoom() {
+      const scale = Math.max(Math.min(1000 / window.innerWidth, 2.2), 1);
+
+      camera.position.x = INITIAL_CAMERA_POSITION[0] * scale;
+      camera.position.y = INITIAL_CAMERA_POSITION[1] * scale;
+      camera.position.z = INITIAL_CAMERA_POSITION[2] * scale;
+    }
+
+    return () => window.removeEventListener('resize', setZoom);
+  }, [camera]);
 
   function onClick(event: ThreeEvent<MouseEvent>) {
     event.stopPropagation();
@@ -186,7 +207,7 @@ function Scene({
     <group>
       {/* <pointLight position={[1, 1, 1]} intensity={5} /> */}
       {/* We can have many pointlights */}
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       {/* <Environment preset='forest' background /> */}
       <Environment files={'/hdr/warehouse-256.hdr'} />
       <group ref={originRef}>
