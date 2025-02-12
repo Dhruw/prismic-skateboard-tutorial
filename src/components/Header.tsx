@@ -5,9 +5,7 @@ import { Logo } from '@/components/Logo';
 import { createClient } from '@/prismicio';
 import { PrismicNextLink } from '@prismicio/next';
 
-type Props = {};
-
-async function Header({}: Props) {
+async function Header() {
   const client = createClient();
 
   const settings = await client.getSingle('settings');

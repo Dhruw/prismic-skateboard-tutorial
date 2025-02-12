@@ -23,7 +23,24 @@ type GLTFResult = GLTF & {
   materials: {};
 };
 
-export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
+type Props = {
+  deckTextureURL: string;
+  deckTextureURLs: string[];
+  wheelTextureURL: string;
+  wheelTextureURLs: string[];
+  truckColor: string;
+  boltColor: string;
+  constantWheelSpin?: boolean;
+};
+
+export function SkateboardModel({
+  deckTextureURL,
+  deckTextureURLs,
+  wheelTextureURL,
+  wheelTextureURLs,
+  truckColor,
+  boltColor,
+}: Props) {
   const { nodes } = useGLTF('/skateboard.gltf') as GLTFResult;
 
   const gripTapeDiffuse = useTexture('/skateboard/griptape-diffuse.webp');
@@ -56,13 +73,11 @@ export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
     return material;
   }, [gripTapeDiffuse, gripTapeRoughness]);
 
-  const boltColor = '#555555';
-
   const boltMaterial = useMemo(() => {
     const material = new THREE.MeshStandardMaterial({
       roughness: 0.3,
       metalness: 0.5,
-      color: '#555555',
+      color: boltColor,
     });
 
     return material;
@@ -73,7 +88,6 @@ export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
   metalNormal.wrapT = THREE.RepeatWrapping;
   metalNormal.anisotropy = 8;
   metalNormal.repeat.set(8, 8);
-  const truckColor = '#555555';
 
   const truckMaterial = useMemo(() => {
     const material = new THREE.MeshStandardMaterial({
@@ -81,13 +95,13 @@ export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
       normalMap: metalNormal,
       normalScale: new THREE.Vector2(0.3, 0.3),
       metalness: 0.8,
-      color: '#555555',
+      color: truckColor,
     });
 
     return material;
   }, [truckColor]);
 
-  const deckTexture = useTexture('/skateboard/Deck.webp');
+  const deckTexture = useTexture(deckTextureURL);
   deckTexture.flipY = false;
   const deckMaterial = useMemo(() => {
     const material = new THREE.MeshStandardMaterial({
@@ -98,7 +112,7 @@ export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
     return material;
   }, [deckTexture]);
 
-  const wheelTexture = useTexture('/skateboard/SkateWheel1.png');
+  const wheelTexture = useTexture(wheelTextureURL);
   wheelTexture.flipY = false;
   const wheelMaterial = useMemo(() => {
     const material = new THREE.MeshStandardMaterial({
@@ -110,7 +124,7 @@ export function SkateboardModel(props: JSX.IntrinsicElements['group']) {
   }, [wheelTexture]);
 
   return (
-    <group {...props} dispose={null}>
+    <group dispose={null}>
       <group name="Scene">
         <mesh
           name="GripTape"

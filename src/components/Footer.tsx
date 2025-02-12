@@ -6,9 +6,8 @@ import { Bounded } from './Bounded';
 import { FooterPhysics } from './FooterPhysics';
 import { asImageSrc } from '@prismicio/client';
 
-type Props = {};
 
-async function Footer({}: Props) {
+async function Footer() {
   const client = createClient();
 
   const settings = await client.getSingle('settings');
