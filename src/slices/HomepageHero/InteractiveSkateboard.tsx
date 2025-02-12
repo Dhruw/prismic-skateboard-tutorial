@@ -61,6 +61,7 @@ function Scene({
         wheelTextureURLs={[wheelTextureURL]}
         truckColor={truckColor}
         boltColor={boltColor}
+        constantWheelSpin
       />
       <ContactShadows opacity={0.6} position={[0, -0.08, 0]} />
     </group>
