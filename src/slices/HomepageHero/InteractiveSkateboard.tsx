@@ -1,12 +1,7 @@
 'use client';
 import * as THREE from 'three';
 import { SkateboardModel } from '@/components/SkateboardModel';
-import {
-  ContactShadows,
-  Environment,
-  Html,
-  OrbitControls,
-} from '@react-three/drei';
+import { ContactShadows, Environment, Html } from '@react-three/drei';
 import { Canvas, ThreeEvent, useThree } from '@react-three/fiber';
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
@@ -269,8 +264,17 @@ function Scene({
         </group>
       </group>
       <ContactShadows opacity={0.6} position={[0, -0.08, 0]} />
-      <group>
-        <Html>
+      <group
+        rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
+        position={[0, -0.09, -0.5]}
+        scale={[0.2, 0.2, 0.2]}
+      >
+        <Html
+          transform
+          zIndexRange={[1, 0]}
+          occlude="blending"
+          wrapperClass="pointer-events-none"
+        >
           <WavyPaths />
         </Html>
       </group>
