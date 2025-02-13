@@ -62,6 +62,26 @@ function Scene({
   const { camera } = useThree();
 
   useEffect(() => {
+    if (!containerRef.current || !originRef.current) return;
+
+    gsap.to(containerRef.current.position, {
+      x: 0.2,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+
+    gsap.to(originRef.current.position, {
+      y: Math.PI / 64,
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+  }, []);
+
+  useEffect(() => {
     camera.lookAt(new THREE.Vector3(-0.2, 0.15, 0));
 
     setZoom();
