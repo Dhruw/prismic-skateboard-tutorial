@@ -10,6 +10,7 @@ import clsx from 'clsx';
 import React, { ComponentProps, ReactNode } from 'react';
 import { Heading } from '@/components/Heading';
 import { PrismicNextImage, PrismicNextImageProps } from '@prismicio/next';
+import { useCustomizerControls } from './context';
 
 type Props = Pick<
   Content.BoardCustomizerDocumentData,
@@ -19,12 +20,45 @@ type Props = Pick<
 };
 
 export default function Controls({ wheels, decks, metals, className }: Props) {
+  const {
+    setDeck,
+    setWheel,
+    setBolt,
+    setTruck,
+    selectedBolt,
+    selectedDeck,
+    selectedTruck,
+    selectedWheel,
+  } = useCustomizerControls();
+
   return (
     <div className={clsx('flex flex-col gap-6', className)}>
-      <Options title="Deck"> </Options>
-      <Options title="Wheels"> </Options>
-      <Options title="Trucks"> </Options>
-      <Options title="Bolts"> </Options>
+      <Options title="Deck" selectedName={selectedDeck?.uid}>
+        {decks.map((item) => (
+          <Option
+            key={item.uid}
+            imageField={item.texture}
+            imgixParams={{
+              rect: [20, 1550, 1000, 1000],
+              width: 150,
+              height: 150,
+            }}
+            selected={item.uid === selectedDeck?.uid}
+            onClick={() => setDeck(deck)}
+          >
+            {item.uid?.replace('/-/g', ' ')}
+          </Option>
+        ))}
+      </Options>
+      <Options title="Wheels" selectedName={selectedWheel?.uid}>
+        {' '}
+      </Options>
+      <Options title="Trucks" selectedName={selectedTruck?.uid}>
+        {' '}
+      </Options>
+      <Options title="Bolts" selectedName={selectedBolt?.uid}>
+        {' '}
+      </Options>
     </div>
   );
 }
@@ -59,6 +93,7 @@ function Options({ title, selectedName, children }: OptionsProps) {
 type OptionProps = Omit<ComponentProps<'button'>, 'children'> & {
   selected: boolean;
   children: ReactNode;
+  onClick: () => void;
 } & (
     | {
         imageField: ImageField;
@@ -78,7 +113,7 @@ function Option({
   imageField,
   imgixParams,
   colorField,
-  ...restProps
+  onClick,
 }: OptionProps) {
   return (
     <button
@@ -91,6 +126,7 @@ function Option({
         <PrismicNextImage
           field={imageField}
           className="pointer-events-none h-full w-full rounded-full"
+          alt=""
         />
       ) : (
         <div
