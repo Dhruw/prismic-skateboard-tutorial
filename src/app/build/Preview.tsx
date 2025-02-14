@@ -1,6 +1,6 @@
 'use client';
 
-import { CameraControls, Preload } from '@react-three/drei';
+import { CameraControls, Environment, Preload } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import React, { Suspense, useRef } from 'react';
 import { useCustomizerControls } from './context';
@@ -33,6 +33,18 @@ export default function Preview({ wheelTextureUrls, deckTextureUrls }: Props) {
   return (
     <Canvas>
       <Suspense fallback={null}>
+        <Environment
+          files={'/hdr/warehouse-512.hdr'}
+          environmentIntensity={0.6}
+        />
+
+        <directionalLight
+          castShadow
+          lookAt={[0, 0, 0]}
+          position={[1, 1, 1]}
+          intensity={1.6}
+        />
+
         <SkateboardModel
           wheelTextureURLs={wheelTextureUrls}
           wheelTextureURL={wheelTextureUrl}
