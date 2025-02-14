@@ -131,7 +131,7 @@ export function SkateboardModel({
     });
 
     return material;
-  }, [truckColor]);
+  }, [truckColor, metalNormal]);
 
   const deckMaterial = useMemo(() => {
     const material = new THREE.MeshStandardMaterial({

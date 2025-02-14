@@ -29,7 +29,7 @@ async function Header() {
           </ul>
         </nav>
         <div className="justify-self-end">
-          <ButtonLink icon="cart" color="purple">
+          <ButtonLink icon="cart" color="purple" href="/">
             <span className="md:hidden">1</span>
             <span className="hidden md:inline">Cart (1)</span>
           </ButtonLink>
