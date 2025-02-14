@@ -44,20 +44,55 @@ export default function Controls({ wheels, decks, metals, className }: Props) {
               height: 150,
             }}
             selected={item.uid === selectedDeck?.uid}
-            onClick={() => setDeck(deck)}
+            onClick={() => setDeck(item)}
           >
             {item.uid?.replace('/-/g', ' ')}
           </Option>
         ))}
       </Options>
+
       <Options title="Wheels" selectedName={selectedWheel?.uid}>
-        {' '}
+        {wheels.map((item) => (
+          <Option
+            key={item.uid}
+            imageField={item.texture}
+            imgixParams={{
+              rect: [20, 10, 850, 850],
+              width: 150,
+              height: 150,
+            }}
+            selected={item.uid === selectedWheel?.uid}
+            onClick={() => setWheel(item)}
+          >
+            {item.uid?.replace('/-/g', ' ')}
+          </Option>
+        ))}
       </Options>
+
       <Options title="Trucks" selectedName={selectedTruck?.uid}>
-        {' '}
+        {metals.map((item) => (
+          <Option
+            key={item.uid}
+            colorField={item.color}
+            selected={item.uid === selectedTruck?.uid}
+            onClick={() => setTruck(item)}
+          >
+            {item.uid?.replace('/-/g', ' ')}
+          </Option>
+        ))}
       </Options>
+
       <Options title="Bolts" selectedName={selectedBolt?.uid}>
-        {' '}
+        {metals.map((item) => (
+          <Option
+            key={item.uid}
+            colorField={item.color}
+            selected={item.uid === selectedBolt?.uid}
+            onClick={() => setBolt(item)}
+          >
+            {item.uid?.replace('/-/g', ' ')}
+          </Option>
+        ))}
       </Options>
     </div>
   );
@@ -121,6 +156,7 @@ function Option({
         'size-10 cursor-pointer rounded-full bg-black outline-2 outline-white',
         selected && 'outline'
       )}
+      onClick={onClick}
     >
       {imageField ? (
         <PrismicNextImage
