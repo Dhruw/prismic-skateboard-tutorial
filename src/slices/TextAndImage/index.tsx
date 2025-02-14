@@ -26,7 +26,7 @@ declare module 'react' {
  */
 const TextAndImage: FC<TextAndImageProps> = ({ slice, index }) => {
   let bgcolor = '';
-  let buttonColor = 'lime';
+  let buttonColor: 'orange' | 'purple' | 'lime' = 'lime';
   let textColor = 'text-white';
 
   switch (slice.primary.theme) {
