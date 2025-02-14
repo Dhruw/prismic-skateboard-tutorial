@@ -97,6 +97,7 @@ export default function Controls({ wheels, decks, metals, className }: Props) {
             key={item.uid}
             colorField={item.color}
             selected={item.uid === selectedTruck?.uid}
+            // @ts-expect-error ignore
             onClick={() => setTruck(item)}
           >
             {item.uid?.replace('/-/g', ' ')}
@@ -110,6 +111,7 @@ export default function Controls({ wheels, decks, metals, className }: Props) {
             key={item.uid}
             colorField={item.color}
             selected={item.uid === selectedBolt?.uid}
+            // @ts-expect-error ignore
             onClick={() => setBolt(item)}
           >
             {item.uid?.replace('/-/g', ' ')}
@@ -185,6 +187,7 @@ function Option({
           field={imageField}
           className="pointer-events-none h-full w-full rounded-full"
           alt=""
+          imgixParams={imgixParams}
         />
       ) : (
         <div
